@@ -4,11 +4,14 @@ import productService from '../services/productService';
 const ProductPicker = () => {
     const [orderId, setOrderId] = useState('');
     const [basketIdTo, setBasketIdTo] = useState('');
+    const [cantidad, setCantidad] = useState('');
+    const [estado, setEstado] = useState('');
+    const [id, setId] = useState('');
     const [pickedProducts, setPickedProducts] = useState([]);
 
     const handlePickProduct = async () => {
         try {
-            const response = await productService.pickProduct(orderId, basketIdTo, pickedProducts);
+            const response = await productService.pickProduct(orderId, basketIdTo, pickedProducts, cantidad, estado, id);
             alert(`Products picked successfully: ${response.data.message}`);
         } catch (error) {
             console.error('Failed to pick products', error);
@@ -29,6 +32,24 @@ const ProductPicker = () => {
                 placeholder="Basket ID To" 
                 value={basketIdTo}
                 onChange={(e) => setBasketIdTo(e.target.value)}
+            />
+            <input 
+                type="text" 
+                placeholder="Basket ID To" 
+                value={cantidad}
+                onChange={(e) => setCantidad(e.target.value)}
+            />
+            <input 
+                type="text" 
+                placeholder="Basket ID To" 
+                value={estado}
+                onChange={(e) => setEstado(e.target.value)}
+            />
+            <input 
+                type="text" 
+                placeholder="Basket ID To" 
+                value={id}
+                onChange={(e) => setId(e.target.value)}
             />
             <textarea
                 placeholder="Picked Products (JSON format)"
